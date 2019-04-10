@@ -14,6 +14,8 @@
 
         public $timestamps = false;
 
+        protected $dates = ['date'];
+
         public function client() {
             return $this->belongsTo(Client::class);
         }

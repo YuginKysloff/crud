@@ -2,6 +2,7 @@
 
     namespace App\Http\Controllers;
 
+    use App\Managers\OrderManager\OrderManager;
     use App\Order;
     use Illuminate\Http\Request;
 
@@ -11,37 +12,10 @@
          *
          * @return \Illuminate\Http\Response
          */
-        public function index() {
-            return view('orders');
-        }
+        public function index(Request $request) {
+            $result = app(OrderManager::class)->getList($request);
 
-        /**
-         * Show the form for creating a new resource.
-         *
-         * @return \Illuminate\Http\Response
-         */
-        public function create() {
-            //
-        }
-
-        /**
-         * Store a newly created resource in storage.
-         *
-         * @param  \Illuminate\Http\Request $request
-         * @return \Illuminate\Http\Response
-         */
-        public function store(Request $request) {
-            //
-        }
-
-        /**
-         * Display the specified resource.
-         *
-         * @param  \App\Order $order
-         * @return \Illuminate\Http\Response
-         */
-        public function show(Order $order) {
-            //
+            return view('orders', $result);
         }
 
         /**
