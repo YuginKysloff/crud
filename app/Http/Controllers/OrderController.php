@@ -2,6 +2,7 @@
 
     namespace App\Http\Controllers;
 
+    use App\Managers\OrderManager\Jobs\SendReportJob;
     use App\Managers\OrderManager\OrderManager;
     use App\Managers\OrderManager\Requests\OrderUpdateRequest;
     use App\Order;
@@ -56,5 +57,17 @@
             $order->delete();
 
             return redirect()->route('orders.index');
+        }
+
+        /**
+         * Generate and email orders report
+         *
+         * @param Request $request
+         * @return \Illuminate\Http\RedirectResponse
+         */
+        public function report(Request $request){
+            SendReportJob::dispatchNow($request);
+
+            return redirect()->back();
         }
     }

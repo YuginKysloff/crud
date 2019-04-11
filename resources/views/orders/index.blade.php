@@ -41,7 +41,9 @@
 
                         <div id="chart" style="width:100%; height:400px;"></div>
 
-                        <table class="table table-dark" style="width:100%">
+                            <a href="{{ route('orders.email') }}?{{ $queryData }}" class="btn btn-link mb-4">Email this report</a>
+
+                        <table class="table" style="width:100%">
                             <thead>
                             <tr>
                                 <th>
@@ -49,12 +51,12 @@
                                             form="search"
                                             name="order[client]"
                                             value="asc"
-                                            class="btn btn-sm btn-dark"><i data-feather="chevron-up"></i></button>
+                                            class="btn btn-sm"><i data-feather="chevron-up"></i></button>
                                     <button type="submit"
                                             form="search"
                                             name="order[client]"
                                             value="desc"
-                                            class="btn btn-sm btn-dark"><i data-feather="chevron-down"></i></button>
+                                            class="btn btn-sm"><i data-feather="chevron-down"></i></button>
                                     Client
                                 </th>
                                 <th>
@@ -62,12 +64,12 @@
                                             form="search"
                                             name="order[product]"
                                             value="asc"
-                                            class="btn btn-sm btn-dark"><i data-feather="chevron-up"></i></button>
+                                            class="btn btn-sm"><i data-feather="chevron-up"></i></button>
                                     <button type="submit"
                                             form="search"
                                             name="order[product]"
                                             value="desc"
-                                            class="btn btn-sm btn-dark"><i data-feather="chevron-down"></i></button>
+                                            class="btn btn-sm"><i data-feather="chevron-down"></i></button>
                                     Product
                                 </th>
                                 <th class="pb-3">Total</th>
@@ -76,12 +78,12 @@
                                             form="search"
                                             name="order[date]"
                                             value="asc"
-                                            class="btn btn-sm btn-dark"><i data-feather="chevron-up"></i></button>
+                                            class="btn btn-sm"><i data-feather="chevron-up"></i></button>
                                     <button type="submit"
                                             form="search"
                                             name="order[date]"
                                             value="desc"
-                                            class="btn btn-sm btn-dark"><i data-feather="chevron-down"></i></button>
+                                            class="btn btn-sm"><i data-feather="chevron-down"></i></button>
                                     Date
                                 </th>
                                 <th class="pb-3">Actions</th>

@@ -21,33 +21,9 @@
 </head>
 <body>
 <div id="app">
-    <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-        <div class="container">
-            <a class="navbar-brand" href="{{ url('/') }}">
-                <strong>{{ config('app.name', 'Laravel') }}</strong>
-            </a>
-        </div>
-    </nav>
-
     <main class="py-4">
         @yield('content')
     </main>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-<script src="https://code.highcharts.com/highcharts.js"></script>
-
-@section('scripts')
-    <script>
-        feather.replace()
-
-        function conf(e) {
-            var answer = confirm('Do you want to delete this order?');
-            if (answer) {
-                e.preventDefault();
-                document.getElementById('logout-form').submit();
-            }
-        }
-    </script>
-@show
 </body>
 </html>

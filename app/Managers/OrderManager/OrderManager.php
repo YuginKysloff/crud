@@ -26,6 +26,7 @@
             $result['orders'] = app(OrderRepository::class)->getFilteredList(new RequestDto($request)) ?? collect();
             $result['params'] = $request->except('page');
             $result['chartData'] = $this->setChartData($result['orders']);
+            $result['queryData'] = http_build_query($request->all());
 
             return $result;
         }
@@ -54,6 +55,7 @@
             $clients = $orders->groupBy('client');
 
             $counter = 0;
+
             foreach ($clients as $client => $orders) {
                 $chartData['series'][$counter]['name'] = $client;
                 foreach ($orders as $key => $order) {
@@ -61,9 +63,7 @@
                 }
                 $counter++;
             }
-//dd($chartData);
-            $result = json_encode($chartData);
 
-            return $result;
+            return json_encode($chartData);
         }
     }
