@@ -16,7 +16,10 @@
                                 </ul>
                             </div>
                         @endif
-                        <form class="form form-inline mb-3" id="search" method="get" action="{{ route('orders.index') }}">
+                        <form class="form form-inline mb-3"
+                              id="search"
+                              method="get"
+                              action="{{ route('orders.index') }}">
                             <div class="form-group">
                                 <input type="text"
                                        class="form-control"
@@ -36,7 +39,9 @@
                             <button type="submit" class="btn btn-primary">Search</button>
                         </form>
 
-                        <table id="orders" class="table table-dark" style="width:100%">
+                        <div id="chart" style="width:100%; height:400px;"></div>
+
+                        <table class="table table-dark" style="width:100%">
                             <thead>
                             <tr>
                                 <th>
@@ -114,13 +119,14 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    @parent
+
     <script>
-        function conf(e) {
-            var answer = confirm('Do you want to delete this order?');
-            if (answer) {
-                e.preventDefault();
-                document.getElementById('logout-form').submit();
-            }
-        }
+        document.addEventListener('DOMContentLoaded', function () {
+            var myChart = Highcharts.chart('chart', {!! $chartData !!});
+        });
     </script>
 @endsection

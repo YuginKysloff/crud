@@ -51,7 +51,8 @@
                                        name="date"
                                        value="{{ $order->date->format('Y-m-d') }}">
                             </div>
-                            <button type="submit" class="btn btn-primary">Save</button>
+                            <button type="submit" class="btn btn-success">Save</button>
+                            <a href="{{ route('orders.index') }}" class="btn btn-primary">Back</a>
                         </form>
                     </div>
                 </div>

@@ -9,12 +9,10 @@
     namespace App\Managers\OrderManager;
 
     use App\Client;
-    use App\Managers\OrderManager\Classes\Chart;
     use App\Managers\OrderManager\Dto\RequestDto;
     use App\Managers\OrderManager\Repositories\OrderRepository;
     use App\Product;
     use Illuminate\Http\Request;
-    use Illuminate\Support\Collection;
 
     class OrderManager {
 
@@ -27,7 +25,7 @@
         public function getOrdersList(Request $request): array {
             $result['orders'] = app(OrderRepository::class)->getFilteredList(new RequestDto($request)) ?? collect();
             $result['params'] = $request->except('page');
-            $result['graph'] = $this->buildGraph($result['orders']);
+            $result['chartData'] = $this->setChartData($result['orders']);
 
             return $result;
         }
@@ -37,15 +35,35 @@
          *
          * @return array
          */
-        public function getCatalogs(){
+        public function getCatalogs() {
             $result['clients'] = Client::all();
             $result['products'] = Product::all();
 
             return $result;
         }
 
-        private function buildGraph(Collection $orders){
+        /**
+         * Set data for building a orders chart
+         *
+         * @param $orders
+         * @return string
+         */
+        private function setChartData($orders) {
+            $chartData = config('chart.data');
 
-            return $orders;
+            $clients = $orders->groupBy('client');
+
+            $counter = 0;
+            foreach ($clients as $client => $orders) {
+                $chartData['series'][$counter]['name'] = $client;
+                foreach ($orders as $key => $order) {
+                    $chartData['series'][$counter]['data'][] = [$order->date->timestamp * 1000, $order->total];
+                }
+                $counter++;
+            }
+//dd($chartData);
+            $result = json_encode($chartData);
+
+            return $result;
         }
     }

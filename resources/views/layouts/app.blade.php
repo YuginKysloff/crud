@@ -18,7 +18,6 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
 </head>
 <body>
 <div id="app">
@@ -35,9 +34,20 @@
     </main>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-<script href="{{ asset('js/app.js') }}"></script>
-<script>
-    feather.replace()
-</script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+
+@section('scripts')
+    <script>
+        feather.replace()
+
+        function conf(e) {
+            var answer = confirm('Do you want to delete this order?');
+            if (answer) {
+                e.preventDefault();
+                document.getElementById('logout-form').submit();
+            }
+        }
+    </script>
+@show
 </body>
 </html>
