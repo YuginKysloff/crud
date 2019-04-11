@@ -3,6 +3,7 @@
     namespace App\Http\Controllers;
 
     use App\Managers\OrderManager\OrderManager;
+    use App\Managers\OrderManager\Requests\OrderUpdateRequest;
     use App\Order;
     use Illuminate\Http\Request;
 
@@ -13,9 +14,9 @@
          * @return \Illuminate\Http\Response
          */
         public function index(Request $request) {
-            $result = app(OrderManager::class)->getList($request);
+            $result = app(OrderManager::class)->getOrdersList($request);
 
-            return view('orders', $result);
+            return view('orders.index', $result);
         }
 
         /**
@@ -25,18 +26,24 @@
          * @return \Illuminate\Http\Response
          */
         public function edit(Order $order) {
-            //
+            $result = app(OrderManager::class)->getCatalogs();
+            $result['order'] = $order;
+
+            return view('orders.edit', $result);
         }
 
         /**
          * Update the specified resource in storage.
          *
-         * @param  \Illuminate\Http\Request $request
+         * @param  OrderUpdateRequest $request
          * @param  \App\Order $order
          * @return \Illuminate\Http\Response
          */
-        public function update(Request $request, Order $order) {
-            //
+        public function update(OrderUpdateRequest $request, Order $order) {
+            $order->fill($request->all());
+            $order->save();
+
+            return redirect()->route('orders.index');
         }
 
         /**
@@ -46,6 +53,8 @@
          * @return \Illuminate\Http\Response
          */
         public function destroy(Order $order) {
-            //
+            $order->delete();
+
+            return redirect()->route('orders.index');
         }
     }

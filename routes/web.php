@@ -1,3 +1,4 @@
 <?php
 
-    Route::resource('/', 'OrderController')->except(['create', 'store', 'show']);
+    Route::get('/', 'OrderController@index')->name('orders.index');
+    Route::resource('orders', 'OrderController')->except(['index', 'create', 'store', 'show']);
