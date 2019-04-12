@@ -12,3 +12,46 @@
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
+
+body {
+    font-family: Montserrat, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    color: #444;
+    background: #eee;
+}
+
+h1 {
+    font-weight: normal;
+    letter-spacing: -1px;
+    color: #34495E;
+}
+
+.table {
+    background: #34495E;
+    color: #fff;
+    border-radius: .4em;
+    overflow: hidden;
+}
+
+.arrow {
+    background: #34495E;
+    color: #fff;
+    border: 1px solid #34495E;
+}
+
+.arrow:hover{
+    background: #34495E;
+    color: #fff;
+}
+
+tr {
+    border-color: lighten(#34495E, 10%);
+}
+th, td {
+    margin: .5em 1em;
+}
+
+th, td:before {
+    color: #dd5;
+}

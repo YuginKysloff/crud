@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Orders</div>
+                    <div class="card-header"><h1>Orders</h1></div>
                     <div class="card-body">
                         @if ($errors->any())
                             <div class="alert alert-danger">
@@ -43,7 +43,7 @@
 
                             <a href="{{ route('orders.email') }}?{{ $queryData }}" class="btn btn-link mb-4">Email this report</a>
 
-                        <table class="table" style="width:100%">
+                        <table class="table table-dark" style="width:100%">
                             <thead>
                             <tr>
                                 <th>
@@ -51,12 +51,12 @@
                                             form="search"
                                             name="order[client]"
                                             value="asc"
-                                            class="btn btn-sm"><i data-feather="chevron-up"></i></button>
+                                            class="btn btn-sm btn-dark arrow"><i data-feather="chevron-up"></i></button>
                                     <button type="submit"
                                             form="search"
                                             name="order[client]"
                                             value="desc"
-                                            class="btn btn-sm"><i data-feather="chevron-down"></i></button>
+                                            class="btn btn-sm btn-dark arrow"><i data-feather="chevron-down"></i></button>
                                     Client
                                 </th>
                                 <th>
@@ -64,12 +64,12 @@
                                             form="search"
                                             name="order[product]"
                                             value="asc"
-                                            class="btn btn-sm"><i data-feather="chevron-up"></i></button>
+                                            class="btn btn-sm btn-dark arrow"><i data-feather="chevron-up"></i></button>
                                     <button type="submit"
                                             form="search"
                                             name="order[product]"
                                             value="desc"
-                                            class="btn btn-sm"><i data-feather="chevron-down"></i></button>
+                                            class="btn btn-sm btn-dark arrow"><i data-feather="chevron-down"></i></button>
                                     Product
                                 </th>
                                 <th class="pb-3">Total</th>
@@ -78,12 +78,12 @@
                                             form="search"
                                             name="order[date]"
                                             value="asc"
-                                            class="btn btn-sm"><i data-feather="chevron-up"></i></button>
+                                            class="btn btn-sm btn-dark arrow"><i data-feather="chevron-up"></i></button>
                                     <button type="submit"
                                             form="search"
                                             name="order[date]"
                                             value="desc"
-                                            class="btn btn-sm"><i data-feather="chevron-down"></i></button>
+                                            class="btn btn-sm btn-dark arrow"><i data-feather="chevron-down"></i></button>
                                     Date
                                 </th>
                                 <th class="pb-3">Actions</th>
